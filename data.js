@@ -370,9 +370,8 @@ const data = [
                         { name: 'Oryx' }]
                 }]
     }
-]
-
+];
 
 module.exports = {
     data
-}
+};

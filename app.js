@@ -1,44 +1,19 @@
 const { data } = require('./data');
+const { count, filter } = require('./utils');
+
 let commands = process.argv.length > 2 ? process.argv.slice(2) : [];
 
-const filter = (criterea) => {
-    const dataClone = [...data]
-    const resObject = [];
-    dataClone.forEach(layer1 => {
-        const people = [];
-        layer1.people.forEach(layer2 => {
-            const animals = layer2.animals.filter(animal => {
-                return animal.name.includes(criterea)
-            })
-            if (animals.length > 0) {
-                people.push({ ...layer2, animals })
-            }
-        })
-        if (people.length > 0) {
-            resObject.push({ ...layer1, people })
-        }
-    })
-    return resObject
+const filterFlag = '--filter=';
+const counterFlag = '--count';
 
-}
-const count = () => {
-    const dataClone = [...data]
-    return dataClone.map(({ name, people }) => {
-        return {
-            name: `${name} [${people.length}]`, people: people.map(({ name, animals }) => {
-                return { name: `${name} [${animals.length}]`, animals: animals }
-            })
-        }
-    })
-}
-
-const filterFlag = '--filter='
-const counterFlag = '--count'
-
+/**
+ * loop commands array and call filter function with flag if --filter exist
+ * call count function if --count exist
+ */
 commands.forEach(command => {
     if (command.startsWith(filterFlag)) {
-        const criterea = command.replace(filterFlag, "")
-        console.log(JSON.stringify(filter(criterea)));
+        const criterea = command.replace(filterFlag, "");
+        filter(criterea, data);
     }
-    if (command === counterFlag) console.log(JSON.stringify(count()));
-})
+    if (command === counterFlag) count(data);
+});
