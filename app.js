@@ -13,7 +13,7 @@ const counterFlag = '--count';
 commands.forEach(command => {
     if (command.startsWith(filterFlag)) {
         const criterea = command.replace(filterFlag, "");
-        filter(criterea, data);
+        filter(criterea, data).length ? console.log(JSON.stringify(filter(criterea, data))) : null ;
     }
-    if (command === counterFlag) count(data);
+    if (command === counterFlag) count(data).length ? console.log(JSON.stringify(filter(data))) : null ;
 });
