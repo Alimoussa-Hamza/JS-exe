@@ -20,7 +20,8 @@ const filter = (criterea, countries) => {
             resObject.push({ ...layer1, people });
         }
     });
-     resObject.length ? console.log(JSON.stringify(resObject)) : null;
+    //resObject.length ? console.log(JSON.stringify(resObject)) : null;
+    return resObject;
 };
 
 /**
@@ -36,7 +37,8 @@ const count = (countries) => {
             })
         }
     });
-    resObject.length ? console.log(JSON.stringify(resObject)) : null;
+    //resObject.length ? console.log(JSON.stringify(resObject)) : null;
+    return resObject
 };
 
 module.exports = {

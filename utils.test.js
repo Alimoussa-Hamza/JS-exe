@@ -1,10 +1,11 @@
 const { count, filter } = require('./utils');
-const { data } = require('./data');
+const { dataMock, filtedDataMock, countedDataMock } = require('./mock');
 
 test('filter', () => {
-    expect(filter(data)).toEqual([]);
+    const flag = "Ano"
+    expect(filter(flag, dataMock)).toEqual(filtedDataMock);
 });
 
 test('count', () => {
-    expect(count(data)).toEqual([]);
+    expect(count(dataMock)).toEqual(countedDataMock);
 });
